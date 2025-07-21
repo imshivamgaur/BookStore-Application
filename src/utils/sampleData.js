@@ -1,0 +1,166 @@
+export const books = [
+  {
+    id: 1,
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    category: "Fiction",
+    price: 12.99,
+    rating: 4.5,
+    image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A classic American novel set in the Jazz Age, exploring themes of wealth, love, and the American Dream through the eyes of narrator Nick Carraway.",
+    isbn: "978-0-7432-7356-5",
+    publishedDate: "1925-04-10",
+    pages: 180
+  },
+  {
+    id: 2,
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    category: "Tech",
+    price: 45.99,
+    rating: 4.7,
+    image: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A handbook of agile software craftsmanship that teaches programmers how to write clean, readable, and maintainable code.",
+    isbn: "978-0-13-235088-4",
+    publishedDate: "2008-08-01",
+    pages: 464
+  },
+  {
+    id: 3,
+    title: "Steve Jobs",
+    author: "Walter Isaacson",
+    category: "Biography",
+    price: 16.99,
+    rating: 4.4,
+    image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "The exclusive biography of Steve Jobs, based on more than forty interviews with Jobs conducted over two years.",
+    isbn: "978-1-4516-4853-9",
+    publishedDate: "2011-10-24",
+    pages: 656
+  },
+  {
+    id: 4,
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    category: "Fiction",
+    price: 14.99,
+    rating: 4.8,
+    image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A gripping tale of racial injustice and childhood innocence in the American South during the 1930s.",
+    isbn: "978-0-06-112008-4",
+    publishedDate: "1960-07-11",
+    pages: 376
+  },
+  {
+    id: 5,
+    title: "JavaScript: The Good Parts",
+    author: "Douglas Crockford",
+    category: "Tech",
+    price: 29.99,
+    rating: 4.3,
+    image: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A deep dive into the elegant parts of JavaScript and how to avoid the pitfalls of this powerful programming language.",
+    isbn: "978-0-596-51774-8",
+    publishedDate: "2008-05-01",
+    pages: 176
+  },
+  {
+    id: 6,
+    title: "Einstein: His Life and Universe",
+    author: "Walter Isaacson",
+    category: "Biography",
+    price: 18.99,
+    rating: 4.6,
+    image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A comprehensive biography of Albert Einstein, exploring his scientific achievements and personal life.",
+    isbn: "978-0-7432-6473-0",
+    publishedDate: "2007-04-10",
+    pages: 675
+  },
+  {
+    id: 7,
+    title: "1984",
+    author: "George Orwell",
+    category: "Fiction",
+    price: 13.99,
+    rating: 4.7,
+    image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A dystopian novel that explores totalitarianism, surveillance, and the power of language in shaping thought.",
+    isbn: "978-0-452-28423-4",
+    publishedDate: "1949-06-08",
+    pages: 328
+  },
+  {
+    id: 8,
+    title: "React: Up & Running",
+    author: "Stoyan Stefanov",
+    category: "Tech",
+    price: 39.99,
+    rating: 4.2,
+    image: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "Learn React quickly with this hands-on guide to building web applications with Facebook's JavaScript library.",
+    isbn: "978-1-4919-3181-5",
+    publishedDate: "2015-12-01",
+    pages: 222
+  },
+  {
+    id: 9,
+    title: "Becoming",
+    author: "Michelle Obama",
+    category: "Biography",
+    price: 17.99,
+    rating: 4.9,
+    image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "The intimate memoir by former First Lady Michelle Obama, chronicling her journey from Chicago to the White House.",
+    isbn: "978-1-5247-6313-8",
+    publishedDate: "2018-11-13",
+    pages: 448
+  },
+  {
+    id: 10,
+    title: "The Catcher in the Rye",
+    author: "J.D. Salinger",
+    category: "Fiction",
+    price: 15.99,
+    rating: 4.1,
+    image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A coming-of-age story following teenager Holden Caulfield as he navigates alienation and identity in New York City.",
+    isbn: "978-0-316-76948-0",
+    publishedDate: "1951-07-16",
+    pages: 277
+  },
+  {
+    id: 11,
+    title: "Learning React",
+    author: "Alex Banks",
+    category: "Tech",
+    price: 42.99,
+    rating: 4.5,
+    image: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "A comprehensive guide to modern React development, covering hooks, context, and best practices.",
+    isbn: "978-1-4920-5172-4",
+    publishedDate: "2020-06-01",
+    pages: 310
+  },
+  {
+    id: 12,
+    title: "The Diary of a Young Girl",
+    author: "Anne Frank",
+    category: "Biography",
+    price: 12.99,
+    rating: 4.8,
+    image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+    description: "The powerful diary of Anne Frank, a Jewish girl hiding from the Nazis during World War II in Amsterdam.",
+    isbn: "978-0-553-29698-2",
+    publishedDate: "1947-06-25",
+    pages: 283
+  }
+];
+
+export const categories = ['All', 'Fiction', 'Tech', 'Biography'];
+export const sortOptions = [
+  { value: 'title', label: 'Title A-Z' },
+  { value: 'price-low', label: 'Price: Low to High' },
+  { value: 'price-high', label: 'Price: High to Low' },
+  { value: 'rating', label: 'Rating: High to Low' }
+];
