@@ -39,3 +39,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.blurred {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}

@@ -1,11 +1,18 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Plus, Minus, Trash2, ShoppingBag, ArrowLeft } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Plus, Minus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 function Cart() {
-  const { cartItems, updateQuantity, removeFromCart, clearCart, getTotalPrice, isLoading } = useCart();
+  const {
+    cartItems,
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+    getTotalPrice,
+    isLoading,
+  } = useCart();
 
   if (isLoading) {
     return (
@@ -39,13 +46,10 @@ function Cart() {
             Your cart is empty
           </h2>
           <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md">
-            Looks like you haven't added any books to your cart yet. 
-            Start browsing and find your next great read!
+            Looks like you haven't added any books to your cart yet. Start
+            browsing and find your next great read!
           </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               to="/"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors font-semibold"
@@ -77,10 +81,11 @@ function Cart() {
               Shopping Cart
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your cart
+              {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in
+              your cart
             </p>
           </div>
-          
+
           {cartItems.length > 0 && (
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -144,11 +149,11 @@ function Cart() {
                     >
                       <Minus className="w-4 h-4" />
                     </motion.button>
-                    
+
                     <span className="text-lg font-semibold text-gray-900 dark:text-white min-w-8 text-center">
                       {item.quantity}
                     </span>
-                    
+
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
@@ -191,29 +196,60 @@ function Cart() {
               Order Summary
             </h2>
 
-            <div className="space-y-4">
-              <div className="flex justify-between text-gray-600 dark:text-gray-400">
-                <span>Subtotal</span>
-                <span>${getTotalPrice().toFixed(2)}</span>
-              </div>
-              
-              <div className="flex justify-between text-gray-600 dark:text-gray-400">
-                <span>Shipping</span>
-                <span>{getTotalPrice() > 35 ? 'Free' : '$4.99'}</span>
-              </div>
-              
-              <div className="flex justify-between text-gray-600 dark:text-gray-400">
-                <span>Tax</span>
-                <span>${(getTotalPrice() * 0.08).toFixed(2)}</span>
-              </div>
-
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                <div className="flex justify-between text-xl font-bold text-gray-900 dark:text-white">
-                  <span>Total</span>
-                  <span>
-                    ${(getTotalPrice() + (getTotalPrice() > 35 ? 0 : 4.99) + (getTotalPrice() * 0.08)).toFixed(2)}
+            {/* Items Details */}
+            <div className="space-y-3 mb-6">
+              {cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex justify-between items-start text-sm"
+                >
+                  <div className="flex-1 pr-2">
+                    <p className="text-gray-900 dark:text-white font-medium line-clamp-1">
+                      {item.title}
+                    </p>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs">
+                      Qty: {item.quantity} × ${item.price}
+                    </p>
+                  </div>
+                  <span className="text-gray-900 dark:text-white font-semibold">
+                    ${(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mb-4">
+              <div className="space-y-3">
+                <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                  <span>Subtotal</span>
+                  <span>${getTotalPrice().toFixed(2)}</span>
+                </div>
+
+                <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                  <span>Shipping</span>
+                  <span>{getTotalPrice() > 35 ? "Free" : "$4.99"}</span>
+                </div>
+
+                <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                  <span>Tax (8%)</span>
+                  <span>${(getTotalPrice() * 0.08).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Total */}
+            <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+              <div className="flex justify-between text-xl font-bold text-gray-900 dark:text-white">
+                <span>Total</span>
+                <span>
+                  $
+                  {(
+                    getTotalPrice() +
+                    (getTotalPrice() > 35 ? 0 : 4.99) +
+                    getTotalPrice() * 0.08
+                  ).toFixed(2)}
+                </span>
               </div>
             </div>
 
@@ -245,7 +281,10 @@ function Cart() {
                 {getTotalPrice() > 35 ? (
                   <>✓ You qualify for free shipping!</>
                 ) : (
-                  <>Add ${(35 - getTotalPrice()).toFixed(2)} more for free shipping</>
+                  <>
+                    Add ${(35 - getTotalPrice()).toFixed(2)} more for free
+                    shipping
+                  </>
                 )}
               </p>
             </div>

@@ -21,6 +21,7 @@ import Favorites from "./pages/Favorites";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -31,14 +32,12 @@ function App() {
             <Router>
               <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
                 <Header />
-
                 <main>
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/book/:id" element={<BookDetails />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
-
                     {/* Protected Routes */}
                     <Route
                       path="/cart"
@@ -56,6 +55,7 @@ function App() {
                         </ProtectedRoute>
                       }
                     />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>
 
