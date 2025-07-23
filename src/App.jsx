@@ -20,6 +20,7 @@ import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -57,6 +58,8 @@ function App() {
                     />
                   </Routes>
                 </main>
+
+                <Footer />
 
                 {/* Toast Notifications */}
                 <Toaster
