@@ -19,27 +19,27 @@ const Footer = () => {
   // Data for links to make the JSX cleaner
   const navLinks = [
     { icon: Home, label: "Home", href: "/" },
-    { icon: BookOpen, label: "Books", href: "/books" },
-    { icon: ShoppingBag, label: "Store", href: "/store" },
+    { icon: BookOpen, label: "Cart", href: "/cart" },
+    { icon: ShoppingBag, label: "Favorites", href: "/favorites" },
     { icon: MessageSquare, label: "Contact", href: "/contact" },
   ];
 
   const contactDetails = [
     {
       icon: Mail,
-      label: "hello@prodevelopers.dev",
-      href: "mailto:hello@prodevelopers.dev",
+      label: "shivamgaur24august@gmail.com",
+      href: "mailto:shivamgaur24august@gmail.com",
       color: "text-blue-600 dark:text-blue-400",
     },
     {
       icon: Phone,
-      label: "+91-9876543210",
-      href: "tel:+919876543210",
+      label: "+91-9667454815",
+      href: "tel:+9667454815",
       color: "text-green-600 dark:text-green-400",
     },
     {
       icon: MapPin,
-      label: "Delhi, India",
+      label: "Noida, India",
       href: "#",
       color: "text-red-600 dark:text-red-400",
     },
@@ -54,7 +54,7 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com",
+      href: "https://github.com/imshivamgaur24august",
       label: "GitHub",
       hoverColor: "hover:text-gray-700 dark:hover:text-gray-300",
     },
@@ -66,7 +66,7 @@ const Footer = () => {
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com",
+      href: "https://linkedin.com/iamshivamgaur24august",
       label: "LinkedIn",
       hoverColor: "hover:text-blue-700 dark:hover:text-blue-500",
     },

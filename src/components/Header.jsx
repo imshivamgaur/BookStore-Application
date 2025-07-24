@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React, { act, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, Heart, User, LogOut, BookOpen, Menu, X, Home } from "lucide-react";
+import {
+  ShoppingCart,
+  Heart,
+  User,
+  LogOut,
+  BookOpen,
+  Menu,
+  X,
+  Home,
+} from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContext";
@@ -22,6 +31,7 @@ function Header() {
   };
 
   const isActive = (path) => location.pathname === path;
+  console.log(isActive("/"));
 
   return (
     <>
@@ -49,7 +59,7 @@ function Header() {
               <Link
                 to="/"
                 className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors ${
-                  isActive("/") ? "text-blue-600 dark:text-blue-400" : ""
+                  isActive("/") ? "text-red-500 dark:text-red-400" : ""
                 }`}
               >
                 Home
@@ -59,7 +69,9 @@ function Header() {
                   <Link
                     to="/favorites"
                     className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors ${
-                      isActive("/favorites") ? "text-blue-600 dark:text-blue-400" : ""
+                      isActive("/favorites")
+                        ? "text-red-600 dark:text-red-400"
+                        : ""
                     }`}
                   >
                     Favorites
@@ -67,7 +79,9 @@ function Header() {
                   <Link
                     to="/cart"
                     className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors ${
-                      isActive("/cart") ? "text-blue-600 dark:text-blue-400" : ""
+                      isActive("/cart")
+                        ? "text-red-600 dark:text-red-400"
+                        : ""
                     }`}
                   >
                     Cart
@@ -138,7 +152,7 @@ function Header() {
                         <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                       </div>
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {user.name.split(' ')[0]}
+                        {user.name.split(" ")[0]}
                       </span>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
@@ -198,10 +212,10 @@ function Header() {
 
             {/* Compact Menu Panel */}
             <motion.div
-              initial={{ y: '-100%' }}
+              initial={{ y: "-100%" }}
               animate={{ y: 0 }}
-              exit={{ y: '-100%' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              exit={{ y: "-100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="fixed top-0 left-0 right-0 bg-white/50 dark:bg-gray-950/50 backdrop-blur-md shadow-lg z-50 md:hidden rounded-b-xl"
             >
               <div className="p-4">
@@ -221,8 +235,8 @@ function Header() {
                     to="/"
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex flex-col items-center p-2 rounded-lg ${
-                      isActive("/") 
-                        ? "text-blue-600 dark:text-blue-400" 
+                      isActive("/")
+                        ? "text-blue-600 dark:text-blue-400"
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
@@ -236,8 +250,8 @@ function Header() {
                         to="/favorites"
                         onClick={() => setMobileMenuOpen(false)}
                         className={`flex flex-col items-center p-2 rounded-lg ${
-                          isActive("/favorites") 
-                            ? "text-blue-600 dark:text-blue-400" 
+                          isActive("/favorites")
+                            ? "text-blue-600 dark:text-blue-400"
                             : "text-gray-700 dark:text-gray-300"
                         }`}
                       >
@@ -249,8 +263,8 @@ function Header() {
                         to="/cart"
                         onClick={() => setMobileMenuOpen(false)}
                         className={`flex flex-col items-center p-2 rounded-lg relative ${
-                          isActive("/cart") 
-                            ? "text-blue-600 dark:text-blue-400" 
+                          isActive("/cart")
+                            ? "text-blue-600 dark:text-blue-400"
                             : "text-gray-700 dark:text-gray-300"
                         }`}
                       >
@@ -275,7 +289,9 @@ function Header() {
                           <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">{user.name.split(' ')[0]}</p>
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                            {user.name.split(" ")[0]}
+                          </p>
                         </div>
                       </div>
                       <button
