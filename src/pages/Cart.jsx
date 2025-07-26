@@ -16,7 +16,7 @@ function Cart() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br bg-transparent flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -31,7 +31,7 @@ function Cart() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center"
+        className="min-h-screen bg-transparent flex items-center justify-center"
       >
         <div className="text-center">
           <motion.div
@@ -42,10 +42,10 @@ function Cart() {
           >
             🛒
           </motion.div>
-          <h2 className="text-3xl font-bold text-gray-700 dark:text-gray-300 mb-4">
+          <h2 className="text-3xl font-bold text-gray-700 dark:text-zinc-200 mb-4">
             Your cart is empty
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md">
+          <p className="text-gray-500 dark:text-zinc-400 mb-8 max-w-md">
             Looks like you haven't added any books to your cart yet. Start
             browsing and find your next great read!
           </p>
@@ -67,7 +67,7 @@ function Cart() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-50 dark:bg-gray-900"
+      className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-zinc-950 dark:to-zinc-900"
     >
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
@@ -77,10 +77,10 @@ function Cart() {
           className="flex items-center justify-between mb-8"
         >
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-zinc-100 mb-2">
               Shopping Cart
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-zinc-400">
               {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in
               your cart
             </p>
@@ -91,7 +91,7 @@ function Cart() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={clearCart}
-              className="px-4 py-2 text-red-600 hover:text-red-700 border border-red-300 hover:border-red-400 rounded-lg transition-colors"
+              className="px-4 py-2 text-red-600 hover:text-red-700 border border-red-300 hover:border-red-400 rounded-lg transition-colors dark:text-red-400 dark:hover:text-red-300 dark:border-red-700 dark:hover:border-red-600"
             >
               Clear Cart
             </motion.button>
@@ -107,7 +107,7 @@ function Cart() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+                className="bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-zinc-700"
               >
                 <div className="flex items-center gap-6">
                   {/* Book Image */}
@@ -127,11 +127,11 @@ function Cart() {
                   {/* Book Details */}
                   <div className="flex-1 min-w-0">
                     <Link to={`/book/${item.id}`}>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 hover:text-primary-600 dark:hover:text-primary-400 transition-colors line-clamp-2">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-zinc-100 mb-1 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                         {item.title}
                       </h3>
                     </Link>
-                    <p className="text-gray-600 dark:text-gray-400 mb-2">
+                    <p className="text-gray-600 dark:text-zinc-400 mb-2">
                       by {item.author}
                     </p>
                     <p className="text-lg font-semibold text-accent-600 dark:text-accent-400">
@@ -145,12 +145,12 @@ function Cart() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                      className="p-2 rounded-full bg-gray-100 dark:bg-zinc-700 text-gray-600 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-600 transition-colors"
                     >
                       <Minus className="w-4 h-4" />
                     </motion.button>
 
-                    <span className="text-lg font-semibold text-gray-900 dark:text-white min-w-8 text-center">
+                    <span className="text-lg font-semibold text-gray-900 dark:text-zinc-100 min-w-8 text-center">
                       {item.quantity}
                     </span>
 
@@ -158,7 +158,7 @@ function Cart() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                      className="p-2 rounded-full bg-gray-100 dark:bg-zinc-700 text-gray-600 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-600 transition-colors"
                     >
                       <Plus className="w-4 h-4" />
                     </motion.button>
@@ -169,15 +169,15 @@ function Cart() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => removeFromCart(item.id)}
-                    className="p-2 text-red-500 hover:text-red-600 transition-colors"
+                    className="p-2 text-red-500 hover:text-red-600 transition-colors dark:text-red-400 dark:hover:text-red-300"
                   >
                     <Trash2 className="w-5 h-5" />
                   </motion.button>
                 </div>
 
                 {/* Item Total */}
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-right">
-                  <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-zinc-700 text-right">
+                  <span className="text-lg font-semibold text-gray-900 dark:text-zinc-100">
                     Subtotal: ${(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
@@ -190,9 +190,9 @@ function Cart() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 h-fit border border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 h-fit border border-gray-200 dark:border-zinc-700"
           >
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-zinc-100 mb-6">
               Order Summary
             </h2>
 
@@ -204,14 +204,14 @@ function Cart() {
                   className="flex justify-between items-start text-sm"
                 >
                   <div className="flex-1 pr-2">
-                    <p className="text-gray-900 dark:text-white font-medium line-clamp-1">
+                    <p className="text-gray-900 dark:text-zinc-100 font-medium">
                       {item.title}
                     </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs">
+                    <p className="text-gray-500 dark:text-zinc-500 text-xs">
                       Qty: {item.quantity} × ${item.price}
                     </p>
                   </div>
-                  <span className="text-gray-900 dark:text-white font-semibold">
+                  <span className="text-gray-900 dark:text-zinc-100 font-semibold">
                     ${(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
@@ -219,19 +219,19 @@ function Cart() {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mb-4">
+            <div className="border-t border-gray-200 dark:border-zinc-700 pt-4 mb-4">
               <div className="space-y-3">
-                <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                <div className="flex justify-between text-gray-600 dark:text-zinc-400">
                   <span>Subtotal</span>
                   <span>${getTotalPrice().toFixed(2)}</span>
                 </div>
 
-                <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                <div className="flex justify-between text-gray-600 dark:text-zinc-400">
                   <span>Shipping</span>
                   <span>{getTotalPrice() > 35 ? "Free" : "$4.99"}</span>
                 </div>
 
-                <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                <div className="flex justify-between text-gray-600 dark:text-zinc-400">
                   <span>Tax (8%)</span>
                   <span>${(getTotalPrice() * 0.08).toFixed(2)}</span>
                 </div>
@@ -239,8 +239,8 @@ function Cart() {
             </div>
 
             {/* Total */}
-            <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-              <div className="flex justify-between text-xl font-bold text-gray-900 dark:text-white">
+            <div className="border-t border-gray-200 dark:border-zinc-700 pt-4">
+              <div className="flex justify-between text-xl font-bold text-gray-900 dark:text-zinc-100">
                 <span>Total</span>
                 <span>
                   $
@@ -269,14 +269,14 @@ function Cart() {
             >
               <Link
                 to="/"
-                className="w-full block text-center px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium"
+                className="w-full block text-center px-6 py-3 border-2 border-gray-300 dark:border-zinc-600 text-gray-700 dark:text-zinc-300 rounded-xl hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium"
               >
                 Continue Shopping
               </Link>
             </motion.div>
 
             {/* Shipping Info */}
-            <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+            <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
               <p className="text-sm text-green-800 dark:text-green-200">
                 {getTotalPrice() > 35 ? (
                   <>✓ You qualify for free shipping!</>

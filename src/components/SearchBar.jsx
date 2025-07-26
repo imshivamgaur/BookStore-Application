@@ -107,7 +107,7 @@ function SearchBar({
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto mb-8">
+    <div className="max-w-3xl mx-auto mb-8">
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -116,12 +116,12 @@ function SearchBar({
         }`}
       >
         {/* Actual input container */}
-        <div className="relative focus-within:ring-2 ring-blue-500 backdrop-blur-xl bg-white/80 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-2xl p-1.5 z-10 transition-all shadow-sm dark:shadow-none">
-          <div className="flex items-center gap-2 md:gap-4">
+        <div className="relative focus-within:ring-2 ring-blue-500 backdrop-blur-xl bg-white/50 dark:bg-zinc-950/50 border border-gray-300 dark:border-white/10 rounded-2xl p-1.5 z-10 transition-all shadow-sm dark:shadow-none">
+          <div className="flex relative items-center gap-2 md:gap-4">
             {/* Input */}
-            <div className="flex-1 flex items-center gap-3 px-4 py-3 relative">
+            <div className="flex-1 flex items-center gap-3 px-2 md:px-4 py-3 relative">
               <Search
-                className={`w-5 h-5 transition-colors duration-300 ${
+                className={`w-5 h-5 transition-colors duration-500 ${
                   isFocused
                     ? "text-blue-600 dark:text-blue-400"
                     : "text-gray-500 dark:text-gray-400"
@@ -140,11 +140,10 @@ function SearchBar({
                 onBlur={() => {
                   setTimeout(() => setIsFocused(false), 200);
                 }}
-                className="flex-1 bg-transparent text-gray-800 text-[15px] dark:text-white placeholder-gray-500 dark:placeholder-gray-400 md:text-lg focus:outline-none"
+                className="w-full bg-transparent  text-gray-800 text-[15px] dark:text-white placeholder-gray-500 dark:placeholder-gray-400 md:text-lg focus:outline-none"
               />
-
-              {/* Search Suggestions */}
             </div>
+            {/* Search Suggestions */}
 
             {showSuggestions && (
               <motion.div
@@ -152,18 +151,14 @@ function SearchBar({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                className="absolute top-full left-0 right-0 mt-2 bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-xl z-50 border border-gray-200/30 dark:border-gray-700/30 overflow-hidden backdrop-blur-lg backdrop-filter"
-                style={{
-                  WebkitBackdropFilter: "blur(16px)",
-                  backdropFilter: "blur(16px)",
-                }}
+                className="absolute top-full left-0 right-0 mt-2 bg-white/90 dark:bg-gray-500/10 backdrop-blur-lg rounded-xl shadow-xl z-10 border border-gray-200/30 dark:border-gray-700/30 "
               >
                 <ul className="py-2 max-h-60 overflow-y-auto overflow-x-hidden custom-scrollbar">
                   {suggestions.map((book) => (
                     <motion.li
                       key={book.id}
                       whileHover={{ scale: 1.01 }}
-                      transition={{ type: "spring", stiffness: 400 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
                       <Link
                         to={`/book/${book.id}`}
@@ -232,9 +227,9 @@ function SearchBar({
 
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`p-3 rounded-xl transition-all duration-300 ${
+                className={`p-3 rounded-xl transition-all duration-500 ${
                   showFilters
-                    ? "bg-blue-100 text-blue-600 shadow-lg shadow-blue-200 dark:bg-blue-500/20 dark:text-blue-400 dark:shadow-blue-500/20"
+                    ? "bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
                     : "bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-white/5 dark:text-gray-400 dark:hover:bg-white/10 dark:hover:text-white"
                 }`}
               >
@@ -251,12 +246,12 @@ function SearchBar({
             height: showFilters ? "auto" : 0,
             opacity: showFilters ? 1 : 0,
           }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
           className="overflow-hidden"
         >
           {/* ... (keep your existing filter panel code) ... */}
           <div className="mt-4">
-            <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-xl border border-gray-300 dark:border-gray-700 p-6 shadow-sm dark:shadow-none">
+            <div className="backdrop-blur-xlbg-white/80 dark:bg-transparent rounded-xl border border-gray-300 dark:border-gray-700 p-6 shadow-sm dark:shadow-none">
               {/* Two equal-width columns */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Category Filter Column */}
@@ -271,13 +266,13 @@ function SearchBar({
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full appearance-none bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-white text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-400 dark:hover:border-gray-600 pr-10"
+                      className="w-full custom-select appearance-none bg-white dark:bg-zinc-900/30 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-white text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400/20 transition-all duration-500 hover:border-gray-400 dark:hover:border-gray-600 pr-10"
                     >
                       {categories.map((cat) => (
                         <option
                           key={cat}
                           value={cat}
-                          className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                          className="bg-white dark:bg-[#101010] text-gray-800 dark:text-white"
                         >
                           {cat}
                         </option>
@@ -301,13 +296,13 @@ function SearchBar({
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full appearance-none bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-white text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-400 dark:hover:border-gray-600 pr-10"
+                      className="w-full appearance-none bg-white dark:bg-zinc-900/30 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-white text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400/20 transition-all duration-500 hover:border-gray-400 dark:hover:border-gray-600 pr-10"
                     >
                       {sortOptions.map((option) => (
                         <option
                           key={option.value}
                           value={option.value}
-                          className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                          className="bg-white dark:bg-[#101010] text-gray-800 dark:text-white"
                         >
                           {option.label}
                         </option>
@@ -333,7 +328,7 @@ function SearchBar({
                     setSelectedCategory(categories[0]);
                     setSortBy(sortOptions[0].value);
                   }}
-                  className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors duration-300 underline underline-offset-2"
+                  className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors duration-500 underline underline-offset-2"
                 >
                   Reset Filters
                 </button>

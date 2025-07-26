@@ -1,26 +1,26 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { 
-  ArrowLeft, 
-  Star, 
-  Heart, 
-  ShoppingCart, 
-  BookOpen, 
-  Calendar, 
-  Hash, 
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  ArrowLeft,
+  Star,
+  Heart,
+  ShoppingCart,
+  BookOpen,
+  Calendar,
+  Hash,
   Users,
   ChevronRight,
   Truck,
   Shield,
   RotateCw,
-  Headphones
-} from 'lucide-react';
-import { books } from '../utils/sampleData';
-import { useAuth } from '../context/AuthContext';
-import { useCart } from '../context/CartContext';
-import { useFavorites } from '../context/FavoritesContext';
-import toast from 'react-hot-toast';
+  Headphones,
+} from "lucide-react";
+import { books } from "../utils/sampleData";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import { useFavorites } from "../context/FavoritesContext";
+import toast from "react-hot-toast";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const BookDetails = () => {
   const { addToCart } = useCart();
   const { isFavorite, toggleFavorite } = useFavorites();
 
-  const book = books.find(b => b.id === parseInt(id));
+  const book = books.find((b) => b.id === parseInt(id));
 
   if (!book) {
     return (
@@ -42,7 +42,7 @@ const BookDetails = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md"
           >
             Back to Home
@@ -54,22 +54,22 @@ const BookDetails = () => {
 
   const handleAddToCart = () => {
     if (!isAuthenticated) {
-      toast.error('Please login to add items to cart');
-      navigate('/login');
+      toast.error("Please login to add items to cart");
+      navigate("/login");
       return;
     }
     addToCart(book);
-    toast.success('Added to cart!');
+    toast.success("Added to cart!");
   };
 
   const handleToggleFavorite = () => {
     if (!isAuthenticated) {
-      toast.error('Please login to add favorites');
-      navigate('/login');
+      toast.error("Please login to add favorites");
+      navigate("/login");
       return;
     }
     toggleFavorite(book);
-    const action = isFavorite(book.id) ? 'removed from' : 'added to';
+    const action = isFavorite(book.id) ? "removed from" : "added to";
     toast.success(`Book ${action} favorites!`);
   };
 
@@ -86,14 +86,20 @@ const BookDetails = () => {
 
     if (hasHalfStar) {
       stars.push(
-        <Star key="half" className="w-5 h-5 text-yellow-400 fill-current opacity-50" />
+        <Star
+          key="half"
+          className="w-5 h-5 text-yellow-400 fill-current opacity-50"
+        />
       );
     }
 
     const emptyStars = 5 - Math.ceil(rating);
     for (let i = 0; i < emptyStars; i++) {
       stars.push(
-        <Star key={`empty-${i}`} className="w-5 h-5 text-gray-300 dark:text-gray-600" />
+        <Star
+          key={`empty-${i}`}
+          className="w-5 h-5 text-gray-300 dark:text-gray-600"
+        />
       );
     }
 
@@ -104,7 +110,7 @@ const BookDetails = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 py-8"
+      className="min-h-screen bg-transparent text-gray-900 dark:text-gray-100 py-8"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
@@ -112,7 +118,7 @@ const BookDetails = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           whileHover={{ x: -5 }}
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
           className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -134,7 +140,7 @@ const BookDetails = () => {
                   alt={book.title}
                   className="w-full h-full object-contain p-4"
                   whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.5 }}
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
@@ -192,28 +198,38 @@ const BookDetails = () => {
               <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
                 <Hash className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">ISBN</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    ISBN
+                  </p>
                   <p className="font-medium">{book.isbn}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
                 <Calendar className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Published</p>
-                  <p className="font-medium">{new Date(book.publishedDate).getFullYear()}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Published
+                  </p>
+                  <p className="font-medium">
+                    {new Date(book.publishedDate).getFullYear()}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
                 <BookOpen className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Pages</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Pages
+                  </p>
                   <p className="font-medium">{book.pages}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
                 <Users className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Status</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Status
+                  </p>
                   <p className="font-medium">Bestseller</p>
                 </div>
               </div>
@@ -237,17 +253,17 @@ const BookDetails = () => {
                 onClick={handleToggleFavorite}
                 className={`flex items-center justify-center gap-2 px-6 py-4 rounded-lg border-2 transition-all ${
                   isAuthenticated && isFavorite(book.id)
-                    ? 'border-red-500 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400'
+                    ? "border-red-500 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400"
+                    : "border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400"
                 }`}
               >
                 <Heart
                   className={`w-5 h-5 ${
-                    isAuthenticated && isFavorite(book.id) ? 'fill-current' : ''
+                    isAuthenticated && isFavorite(book.id) ? "fill-current" : ""
                   }`}
                 />
                 <span className="font-semibold">
-                  {isAuthenticated && isFavorite(book.id) ? 'Saved' : 'Save'}
+                  {isAuthenticated && isFavorite(book.id) ? "Saved" : "Save"}
                 </span>
               </motion.button>
             </div>
@@ -257,21 +273,35 @@ const BookDetails = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="bg-white dark:bg-gray-800 rounded-xl p-6 space-y-4 shadow-sm border border-gray-200 dark:border-gray-700"
+              className="bg-transparent rounded-xl p-6 space-y-4 shadow-sm border border-gray-200 dark:border-gray-700"
             >
               <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
                 Our Guarantees
               </h4>
               <ul className="space-y-3">
                 {[
-                  { icon: <Truck className="w-5 h-5 text-blue-500" />, text: 'Free shipping on orders over $35' },
-                  { icon: <RotateCw className="w-5 h-5 text-green-500" />, text: '30-day return policy' },
-                  { icon: <Shield className="w-5 h-5 text-purple-500" />, text: 'Secure checkout' },
-                  { icon: <Headphones className="w-5 h-5 text-amber-500" />, text: '24/7 customer support' }
+                  {
+                    icon: <Truck className="w-5 h-5 text-blue-500" />,
+                    text: "Free shipping on orders over $35",
+                  },
+                  {
+                    icon: <RotateCw className="w-5 h-5 text-green-500" />,
+                    text: "30-day return policy",
+                  },
+                  {
+                    icon: <Shield className="w-5 h-5 text-purple-500" />,
+                    text: "Secure checkout",
+                  },
+                  {
+                    icon: <Headphones className="w-5 h-5 text-amber-500" />,
+                    text: "24/7 customer support",
+                  },
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div className="mt-0.5">{item.icon}</div>
-                    <span className="text-gray-700 dark:text-gray-300">{item.text}</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      {item.text}
+                    </span>
                   </li>
                 ))}
               </ul>

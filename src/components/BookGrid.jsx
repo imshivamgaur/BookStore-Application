@@ -57,7 +57,7 @@ function BookGrid({ books, isLoading }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{
               delay: index < 4 ? index * 0.1 : 0,
-              duration: 0.3,
+              duration: 0.5,
             }}
           >
             <BookCard book={book} index={index} />
@@ -87,7 +87,7 @@ function BookGrid({ books, isLoading }) {
               className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${(visibleCount / books.length) * 100}%` }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
             />
           </div>
 
@@ -99,7 +99,7 @@ function BookGrid({ books, isLoading }) {
                 disabled={isExpanding}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-6 py-3 bg-blue-500/20 border border-blue-500 text-blue-700 dark:text-blue-300 font-medium rounded-xl backdrop-blur-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-6 py-3 bg-blue-500/20 border border-blue-500 text-blue-700 dark:text-blue-300 font-medium rounded-xl backdrop-blur-md transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isExpanding ? (
                   <>
@@ -134,7 +134,7 @@ function BookGrid({ books, isLoading }) {
                 onClick={handleShowLess}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-6 py-3 bg-blue-500/20 border border-blue-500 text-blue-700 dark:text-blue-300 font-medium rounded-xl backdrop-blur-md transition-all duration-300"
+                className="flex items-center gap-2 px-6 py-3 bg-blue-500/20 border border-blue-500 text-blue-700 dark:text-blue-300 font-medium rounded-xl backdrop-blur-md transition-all duration-500"
               >
                 <span>Show Less</span>
                 <motion.div

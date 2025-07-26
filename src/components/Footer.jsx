@@ -73,7 +73,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gray-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-900 text-gray-900 dark:text-white overflow-hidden border-t border-gray-200 dark:border-gray-800">
+    <footer className="relative bg-gray-50 dark:bg-gradient-to-br bg-transparent text-gray-900 dark:text-white overflow-hidden border-t border-gray-200 dark:border-gray-800">
       {/* Custom Keyframe Animations */}
       <style
         dangerouslySetInnerHTML={{
@@ -133,10 +133,10 @@ const Footer = () => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="flex items-center justify-center md:justify-start gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 group"
+                    className="flex items-center justify-center md:justify-start gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-500 group"
                   >
                     <item.icon className="w-4 h-4 text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                    <span className="group-hover:translate-x-1 transition-transform duration-500">
                       {item.label}
                     </span>
                   </a>
@@ -156,12 +156,12 @@ const Footer = () => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="flex items-center justify-center md:justify-start gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 group"
+                    className="flex items-center justify-center md:justify-start gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-500 group"
                   >
                     <item.icon
                       className={`w-4 h-4 flex-shrink-0 ${item.color}`}
                     />
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                    <span className="group-hover:translate-x-1 transition-transform duration-500">
                       {item.label}
                     </span>
                   </a>
@@ -184,7 +184,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={`w-12 h-12 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.hoverColor} transition-all duration-300 hover:scale-110 hover:bg-gray-300/50 dark:hover:bg-gray-700/50`}
+                  className={`w-12 h-12 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.hoverColor} transition-all duration-500 hover:scale-110 hover:bg-gray-300/50 dark:hover:bg-gray-700/50`}
                 >
                   <social.icon className="w-5 h-5" />
                 </a>

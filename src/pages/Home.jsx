@@ -5,6 +5,7 @@ import BookGrid from "../components/BookGrid";
 import { books } from "../utils/sampleData";
 import StatsSection from "../components/StatsSection";
 import { Star, Truck, RefreshCw, BookOpen, Search } from "lucide-react";
+import FloatingBooks from "../components/FloatingBooks";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,19 +45,30 @@ function Home() {
   }, [searchTerm, selectedCategory, sortBy]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
-      <div className="container mx-auto px-4 sm:px-6 py-8">
+    <div className="min-h-screen bg-transparent ">
+      <div className="container relative mx-auto px-4 sm:px-6 pb-8">
+        {/* Background Blur Effect */}
+        <motion.div
+          className="absolute block bg-[#0001fc] blur-[80px]  md:blur-[100px] opacity-45 h-[5%] md:h-[10%] w-[100%] md:w-[60%] right-0 -rotate-[60deg] md:-rotate-[45deg] -top-20 md:-right-[10%] rounded-[400%]"
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+          }}
+        />
+
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-2 relative min-h-[60vh] md:min-h-[80vh] flex flex-col items-center justify-center"
         >
+          <FloatingBooks />
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-            className="inline-flex items-center justify-center mb-6 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium"
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="inline-flex items-center justify-center mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium border border-blue-100/50 dark:border-blue-800/50 shadow-sm backdrop-blur-sm"
           >
             <BookOpen className="w-4 h-4 mr-2" />
             Discover your next adventure
@@ -65,74 +77,93 @@ function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
           >
             Find Your Next{" "}
             <span className="relative inline-block">
-              <span className="relative z-10">Great Read</span>
-              <span className="absolute bottom-0 left-0 w-full h-3 bg-blue-200 dark:bg-blue-400/80 -rotate-1 -z-0"></span>
+              <span className="relative z-10 font-bold bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent">
+                Great Read
+              </span>
             </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
             className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed"
           >
-            Explore our handpicked collection of books across all genres. From
-            page-turning fiction to mind-expanding non-fiction, we've got
-            something for every reader.
+            Discover our curated collection of fiction and non-fiction books for
+            every reader.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
             className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-gray-600 dark:text-gray-400"
           >
-            <div className="flex items-center gap-2 bg-white dark:bg-gray-800/50 px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <motion.div
+              whileHover={{ y: -2, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="flex items-center gap-2 bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-600/50 transition-all duration-200 cursor-pointer "
+            >
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
               <span className="flex items-center gap-1">
                 <span className="font-medium text-gray-900 dark:text-white">
                   {books.length}
                 </span>{" "}
                 Books Available
               </span>
-            </div>
-            <div className="flex items-center gap-2 bg-white dark:bg-gray-800/50 px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -2, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="flex items-center gap-2 bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-green-200 dark:hover:border-green-600/50 transition-all duration-200 cursor-pointer"
+            >
               <Truck className="w-4 h-4 text-green-500" />
               <span>Free Shipping</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white dark:bg-gray-800/50 px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -2, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="flex items-center gap-2 bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-purple-200 dark:hover:border-purple-600/50 transition-all duration-200 cursor-pointer"
+            >
               <RefreshCw className="w-4 h-4 text-purple-500" />
               <span>Easy Returns</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white dark:bg-gray-800/50 px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -2, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="flex items-center gap-2 bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-yellow-200 dark:hover:border-yellow-600/50 transition-all duration-200 cursor-pointer"
+            >
               <Star className="w-4 h-4 text-yellow-500" />
               <span>Curated Selection</span>
-            </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* Search and Filters */}
-        <div className="mb-8">
-          <SearchBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-          />
-        </div>
+          {/* Search and Filters */}
+          <div className="mt-12 w-full">
+            <SearchBar
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
+          </div>
+        </motion.div>
 
         {/* Results Count */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           className="mb-6 flex justify-between items-center"
         >
           <p className="text-gray-600 dark:text-gray-400">

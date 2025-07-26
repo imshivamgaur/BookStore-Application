@@ -30,7 +30,7 @@ function App() {
         <CartProvider>
           <FavoritesProvider>
             <Router>
-              <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+              <div className="min-h-screen relative bg-[#fafafa] dark:bg-[#0a0a0a] transition-colors">
                 <Header />
                 <main>
                   <Routes>
@@ -43,7 +43,8 @@ function App() {
                       path="/cart"
                       element={
                         <ProtectedRoute>
-                          <Cart />
+                          {" "}
+                          <Cart />{" "}
                         </ProtectedRoute>
                       }
                     />
@@ -58,9 +59,7 @@ function App() {
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>
-
                 <Footer />
-
                 {/* Toast Notifications */}
                 <Toaster
                   position="bottom-right"

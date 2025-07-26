@@ -22,7 +22,7 @@ function Favorites() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-transparent flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -37,7 +37,7 @@ function Favorites() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center"
+        className="min-h-screen bg-transparent flex items-center justify-center"
       >
         <div className="text-center">
           <motion.div
@@ -73,7 +73,7 @@ function Favorites() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-50 dark:bg-gray-900"
+      className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-zinc-900 dark:to-zinc-950"
     >
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
@@ -101,7 +101,7 @@ function Favorites() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 border border-gray-200 dark:border-gray-700">
                 {/* Book Cover */}
                 <div className="relative overflow-hidden">
                   <Link to={`/book/${book.id}`}>

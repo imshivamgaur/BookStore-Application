@@ -7,7 +7,7 @@ const StatsSection = () => {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.8 }}
+      transition={{ delay: 0.5 }}
       className="mt-20 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8"
     >
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">

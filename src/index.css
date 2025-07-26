@@ -4,13 +4,13 @@
 
 /* CSS Custom Properties for Toast theming */
 :root {
-  --toast-bg: #ffffff;
+  --toast-bg: #ffffffd7;
   --toast-color: #1f2937;
   --toast-border: #e5e7eb;
 }
 
 .dark {
-  --toast-bg: #374151;
+  --toast-bg: #374151d0;
   --toast-color: #f9fafb;
   --toast-border: #4b5563;
 }
@@ -27,25 +27,10 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+ font-family: "Poppins", sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Line clamping utilities */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* Custom scrollbar */
@@ -67,12 +52,6 @@ body {
 
 /* Smooth transitions for theme switching */
 * {
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-
-
-.blurred {
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }

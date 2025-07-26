@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, BookOpen } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import toast from 'react-hot-toast';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Mail, Lock, User, BookOpen } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 function Signup() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -23,217 +23,285 @@ function Signup() {
     setIsLoading(true);
 
     try {
-      const result = await signup(formData.email, formData.password, formData.confirmPassword);
-      
+      const result = await signup(
+        formData.email,
+        formData.password,
+        formData.confirmPassword
+      );
+
       if (result.success) {
-        toast.success('Account created successfully!');
-        navigate('/');
+        toast.success("Account created successfully!");
+        navigate("/");
       } else {
-        toast.error(result.error || 'Signup failed');
+        toast.error(result.error || "Signup failed");
       }
     } catch (error) {
-      toast.error('Signup failed');
+      toast.error("Signup failed");
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-primary-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-[70vh] md:min-h-screen bg-transparent flex items-center justify-center p-4 relative">
+      {/* Background elements */}
+      <div className="absolute top-0 md:top-1/4 left-1/4 w-64 h-64 bg-blue-600/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 md:bottom-1/4 right-1/4 w-72 h-72 bg-purple-600/40 rounded-full blur-3xl" />
+
+      {/* Main container */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md mx-auto my-8 sm:my-0"
       >
-        {/* Logo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1 }}
-          className="text-center mb-8"
+          className="bg-transparent backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/10"
+          whileHover={{ y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <div className="flex items-center justify-center gap-2 text-primary-600 dark:text-primary-400 mb-4">
-            <BookOpen className="w-10 h-10" />
-            <span className="text-3xl font-bold">BookStore</span>
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            Create Account
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Join us to start your reading journey
-          </p>
-        </motion.div>
-
-        {/* Signup Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
-        >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email Field */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
-                  placeholder="Enter your email"
-                />
-              </div>
-            </div>
-
-            {/* Password Field */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  minLength={6}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
-                  placeholder="Create a password (min 6 characters)"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-
-            {/* Confirm Password Field */}
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
-                  placeholder="Confirm your password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                >
-                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-              {formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">Passwords do not match</p>
-              )}
-            </div>
-
-            {/* Submit Button */}
-            <motion.button
-              type="submit"
-              disabled={isLoading || (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full py-3 px-4 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white font-semibold rounded-lg transition-colors focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:cursor-not-allowed"
+          <div className="p-6 sm:p-8 md:p-10">
+            {/* Header section */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="text-center mb-6 sm:mb-8"
             >
-              {isLoading ? (
-                <div className="flex items-center justify-center gap-2">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                  />
-                  <span>Creating Account...</span>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex justify-center mb-3 sm:mb-4"
+              >
+                <div className="p-3 bg-gray-500/10 rounded-full backdrop-blur-sm">
+                  <BookOpen className="w-7 h-7 sm:w-8 sm:h-8 text-blue-600" />
                 </div>
-              ) : (
-                'Create Account'
-              )}
-            </motion.button>
+              </motion.div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                Create Your Account
+              </h1>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+                Join us to start your reading journey
+              </p>
+            </motion.div>
 
-            {/* Password Requirements */}
+            {/* Form section */}
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              {/* Email field */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="block w-full pl-9 sm:pl-10 pr-3 p-3 text-sm sm:text-base bg-transparent text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/30 dark:focus:bg-zinc-700/30 transition-all placeholder-gray-600 dark:placeholder-gray-500 shadow-md"
+                    placeholder="Email address"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Password field */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    minLength={6}
+                    className="block w-full pl-9 sm:pl-10 pr-10 p-3 text-sm sm:text-base bg-transparent text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/30 dark:focus:bg-zinc-700/30 transition-all placeholder-gray-600 dark:placeholder-gray-500 shadow-md"
+                    placeholder="Password (min 6 characters)"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-blue-500 transition-colors"
+                  >
+                    {showPassword ? (
+                      <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
+                    ) : (
+                      <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" />
+                    )}
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Confirm Password field */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35, duration: 0.5 }}
+              >
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                    className="block w-full pl-9 sm:pl-10 pr-10 p-3 text-sm sm:text-base bg-transparent text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/30 dark:focus:bg-zinc-700/30 transition-all placeholder-gray-600 dark:placeholder-gray-500 shadow-md"
+                    placeholder="Confirm Password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-blue-500 transition-colors"
+                  >
+                    {showConfirmPassword ? (
+                      <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
+                    ) : (
+                      <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" />
+                    )}
+                  </button>
+                </div>
+                {formData.password &&
+                  formData.confirmPassword &&
+                  formData.password !== formData.confirmPassword && (
+                    <p className="text-red-500 text-xs mt-1">
+                      Passwords do not match
+                    </p>
+                  )}
+              </motion.div>
+
+              {/* Submit button */}
+              <motion.button
+                type="submit"
+                disabled={
+                  isLoading ||
+                  (formData.password &&
+                    formData.confirmPassword &&
+                    formData.password !== formData.confirmPassword)
+                }
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full flex justify-center py-3 px-4 rounded-lg text-sm sm:text-base font-medium text-white bg-blue-600/80 hover:bg-blue-700/80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
+              >
+                {isLoading ? (
+                  <div className="flex items-center">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 0.5,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full mr-2"
+                    />
+                    Creating account...
+                  </div>
+                ) : (
+                  "Sign Up"
+                )}
+              </motion.button>
+            </form>
+
+            {/* Password requirements */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4"
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="mt-4 sm:mt-6 bg-blue-50/30 dark:bg-blue-900/20 rounded-lg p-2 sm:p-3 text-center backdrop-blur-sm text-xs sm:text-sm"
             >
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Password Requirements:
-              </h4>
-              <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
-                <li className={`flex items-center gap-2 ${formData.password.length >= 6 ? 'text-green-600 dark:text-green-400' : ''}`}>
-                  <span className={`w-2 h-2 rounded-full ${formData.password.length >= 6 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
-                  At least 6 characters
-                </li>
-                <li className={`flex items-center gap-2 ${formData.password && formData.confirmPassword && formData.password === formData.confirmPassword ? 'text-green-600 dark:text-green-400' : ''}`}>
-                  <span className={`w-2 h-2 rounded-full ${formData.password && formData.confirmPassword && formData.password === formData.confirmPassword ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
-                  Passwords match
-                </li>
-              </ul>
+              <div className="text-blue-700 dark:text-blue-300 space-y-1 flex flex-col items-start">
+                <p className="font-medium mb-1 text-start">
+                  Password Requirements:
+                </p>
+                <div className="flex items-center justify-start gap-2">
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      formData.password.length >= 6
+                        ? "bg-green-500"
+                        : "bg-gray-400"
+                    }`}
+                  ></span>
+                  <span>At least 6 characters</span>
+                </div>
+
+                <div className="flex items-center justify-start gap-2">
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      formData.password &&
+                      formData.confirmPassword &&
+                      formData.password === formData.confirmPassword
+                        ? "bg-green-500"
+                        : "bg-gray-400"
+                    }`}
+                  ></span>
+                  <span>Passwords must match</span>
+                </div>
+              </div>
             </motion.div>
-          </form>
 
-          {/* Sign In Link */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 text-center"
-          >
-            <p className="text-gray-600 dark:text-gray-400">
-              Already have an account?{' '}
-              <Link
-                to="/login"
-                className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
-              >
-                Sign in here
-              </Link>
-            </p>
-          </motion.div>
-
-          {/* Back to Home */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-4 text-center"
-          >
-            <Link
-              to="/"
-              className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-sm transition-colors"
+            {/* Login link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="mt-4 sm:mt-6 text-center text-xs sm:text-sm"
             >
-              ← Back to BookStore
-            </Link>
-          </motion.div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
+                >
+                  Sign in
+                </Link>
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Back to home link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+          className="mt-4 sm:mt-6 text-center text-xs sm:text-sm"
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors group"
+          >
+            <motion.span
+              whileHover={{ x: -3 }}
+              className="mr-1 group-hover:-translate-x-0.5 transition-transform"
+            >
+              ←
+            </motion.span>
+            Return to homepage
+          </Link>
         </motion.div>
       </motion.div>
     </div>

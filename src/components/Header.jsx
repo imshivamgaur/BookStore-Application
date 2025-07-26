@@ -39,59 +39,87 @@ function Header() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50"
+        transition={{ duration: 0.5 }}
+        className="sticky top-0 z-50 w-full"
       >
-        <div className="container mx-auto p-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <div className="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center w-full bg-gray-500/5 shadow-lg backdrop-blur-lg border border-gray-300/50 dark:border-gray-800/50 p-5 rounded-2xl">
+            {/* Logo - Takes 1/3 space */}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="flex-1"
+            >
               <Link
                 to="/"
-                className="flex items-center space-x-2 text-blue-600 dark:text-blue-400"
+                className="flex items-center space-x-2 text-black dark:text-[#f9fafc]"
               >
                 <BookOpen className="w-7 h-7 md:w-8 md:h-8" />
-                <span className="text-xl md:text-2xl font-bold">BookStore</span>
+                <p className="text-xl md:text-2xl font-bold">
+                  100<span className="text-red-500">x</span>Books
+                </p>
               </Link>
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                to="/"
-                className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors ${
-                  isActive("/") ? "text-red-500 dark:text-red-400" : ""
-                }`}
-              >
-                Home
-              </Link>
-              {isAuthenticated && (
-                <>
+            {/* Desktop Navigation - Takes 1/3 space and centers */}
+            <nav className="hidden md:flex flex-1 justify-center">
+              <div className="flex space-x-8">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <Link
-                    to="/favorites"
-                    className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors ${
-                      isActive("/favorites")
-                        ? "text-red-600 dark:text-red-400"
-                        : ""
+                    to="/"
+                    className={`font-medium transition-colors text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ${
+                      isActive("/") ? "!text-blue-600 dark:!text-blue-400" : ""
                     }`}
                   >
-                    Favorites
+                    Home
                   </Link>
-                  <Link
-                    to="/cart"
-                    className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors ${
-                      isActive("/cart")
-                        ? "text-red-600 dark:text-red-400"
-                        : ""
-                    }`}
-                  >
-                    Cart
-                  </Link>
-                </>
-              )}
+                </motion.div>
+                {isAuthenticated && (
+                  <>
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Link
+                        to="/favorites"
+                        className={`font-medium transition-colors ${
+                          isActive("/favorites")
+                            ? "!text-blue-600 dark:!text-blue-400"
+                            : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                        }`}
+                      >
+                        Favorites
+                      </Link>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Link
+                        to="/cart"
+                        className={`font-medium transition-colors ${
+                          isActive("/cart")
+                            ? "!text-blue-600 dark:!text-blue-400"
+                            : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                        }`}
+                      >
+                        Cart
+                      </Link>
+                    </motion.div>
+                  </>
+                )}
+              </div>
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-3 md:gap-4">
+            {/* Actions - Takes 1/3 space and aligns right */}
+            <div className="flex-1 flex justify-end items-center gap-4">
               <ThemeToggle />
 
               {/* Mobile Menu Button */}
@@ -103,9 +131,9 @@ function Header() {
               </button>
 
               {/* Desktop Actions */}
-              <div className="hidden md:flex">
+              <div className="hidden md:flex items-center">
                 {isAuthenticated ? (
-                  <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1">
+                  <div className="flex items-center gap-2 bg-gray-500/10 rounded-full px-2 py-1">
                     {/* Cart */}
                     <motion.div
                       whileHover={{ scale: 1.1 }}
@@ -119,8 +147,9 @@ function Header() {
                         <ShoppingCart className="w-5 h-5" />
                         {getTotalItems() > 0 && (
                           <motion.span
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{ duration: 0.3 }}
                             className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"
                           >
                             {getTotalItems()}
@@ -129,24 +158,10 @@ function Header() {
                       </Link>
                     </motion.div>
 
-                    {/* Favorites */}
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="p-2"
-                    >
-                      <Link
-                        to="/favorites"
-                        className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      >
-                        <Heart className="w-5 h-5" />
-                      </Link>
-                    </motion.div>
-
                     {/* User Profile */}
                     <motion.div
                       whileHover={{ scale: 1.05 }}
-                      className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full bg-white dark:bg-gray-700 shadow-sm"
+                      className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full bg-white/20 dark:bg-gray-500/20 shadow-sm"
                     >
                       <div className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
                         <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -205,6 +220,7 @@ function Header() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
+              transition={{ duration: 0.5 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black z-40 md:hidden"
               onClick={() => setMobileMenuOpen(false)}
@@ -216,9 +232,9 @@ function Header() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 left-0 right-0 bg-white/50 dark:bg-gray-950/50 backdrop-blur-md shadow-lg z-50 md:hidden rounded-b-xl"
+              className="fixed top-0 left-0 right-0 bg-gray-500/5 backdrop-blur-md shadow-lg z-50 md:hidden rounded-b-xl"
             >
-              <div className="p-4">
+              <div className="p-8">
                 {/* Menu Header with Close Button */}
                 <div className="flex justify-end">
                   <button
