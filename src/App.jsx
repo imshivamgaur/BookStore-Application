@@ -22,6 +22,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/book/:id" element={<BookDetails />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/contact" element={<Contact />} />
                     {/* Protected Routes */}
                     <Route
                       path="/cart"

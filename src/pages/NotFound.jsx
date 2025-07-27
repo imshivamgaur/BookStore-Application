@@ -11,7 +11,7 @@ const NotFound = () => {
   return (
     <div className="min-h-[80vh] md:min-h-screen relative bg-transparent flex flex-col items-center justify-center p-6 text-center overflow-hidden">
       {/* Background spotlight effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-3xl opacity-30"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-transparent rounded-full blur-3xl opacity-30"></div>
 
       {/* Floating book elements - more refined */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
