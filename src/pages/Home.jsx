@@ -10,11 +10,11 @@ import {
   RefreshCw,
   BookOpen,
   Search,
-  ChevronDown,
-  SortAsc,
+  PhoneCall,
 } from "lucide-react";
 import FloatingBooks from "../components/FloatingBooks";
 import FilterControls from "../components/FilterControls";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,7 +58,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-transparent ">
+    <div className="min-h-screen bg-transparent relative ">
       <div className="container relative mx-auto px-4 sm:px-6 pb-8">
         {/* Background Blur Effect */}
         <motion.div

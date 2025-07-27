@@ -422,7 +422,7 @@ export const books = [
   },
   {
     id: 20,
-    title: "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
+    title: "Bad Blood",
     author: "John Carreyrou",
     price: 16.99,
     originalPrice: 24.99,

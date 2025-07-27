@@ -228,7 +228,7 @@ function Header() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 left-0 right-0 bg-gray-500/5 backdrop-blur-md shadow-lg z-50 lg:hidden rounded-b-xl"
+              className="fixed top-0 left-0 right-0 bg-gray-500/5 backdrop-blur-lg shadow-lg z-50 lg:hidden rounded-b-xl"
             >
               <div className="p-8">
                 {/* Menu Header with Close Button */}

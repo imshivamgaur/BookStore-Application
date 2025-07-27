@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Plus, Minus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import CheckoutModal from "../components/CheckOutModal";
 
 function Cart() {
   const {
@@ -13,6 +14,9 @@ function Cart() {
     getTotalPrice,
     isLoading,
   } = useCart();
+
+  //* Modal
+  const [showModal, setShowModal] = useState(false);
 
   if (isLoading) {
     return (
@@ -264,6 +268,7 @@ function Cart() {
             </div>
 
             <motion.button
+              onClick={() => setShowModal(true)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full mt-4 md:mt-6 px-4 py-3 md:px-6 md:py-4 bg-primary-600 text-white rounded-lg md:rounded-xl hover:bg-primary-700 transition-colors font-semibold text-base md:text-lg flex items-center justify-center gap-2"
@@ -301,6 +306,12 @@ function Cart() {
           </motion.div>
         </div>
       </div>
+
+      <CheckoutModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        clearCart={clearCart}
+      />
     </motion.div>
   );
 }

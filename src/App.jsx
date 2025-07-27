@@ -23,6 +23,8 @@ import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
+import { PhoneCall } from "lucide-react";
+import FloatingContact from "./components/FloatingContact";
 
 function App() {
   return (
@@ -86,6 +88,8 @@ function App() {
                     },
                   }}
                 />
+
+                <FloatingContact />
               </div>
             </Router>
           </FavoritesProvider>
