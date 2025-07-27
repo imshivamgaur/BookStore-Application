@@ -73,7 +73,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gray-50 dark:bg-gradient-to-br bg-transparent text-gray-900 dark:text-white overflow-hidden border-t border-gray-200 dark:border-gray-800">
+    <footer className="relative bg-transparent text-gray-900 dark:text-white overflow-hidden border-t border-gray-200 dark:border-gray-800">
       {/* Custom Keyframe Animations */}
       <style
         dangerouslySetInnerHTML={{
@@ -107,10 +107,10 @@ const Footer = () => {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative container z-10  mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Brand Section */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 dark:from-blue-400 dark:via-purple-500 dark:to-blue-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl font-bold bg-gradient-to-b from-blue-500 to-blue-600  dark:from-purple-500 dark:to-purple-600  bg-clip-text text-transparent mb-4">
             ProDevelopers
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base">
@@ -124,11 +124,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
           {/* Navigation Column */}
           <div className="text-center md:text-left ">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center justify-center md:justify-start gap-2">
+            <h3 className="text-md md:text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center justify-center md:justify-start gap-2">
               <Code className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               Navigation
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-4 text-sm md:text-md">
               {navLinks.map((item) => (
                 <li key={item.label}>
                   <a
@@ -147,11 +147,11 @@ const Footer = () => {
 
           {/* Contact Column */}
           <div className="text-center md:text-left">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center justify-center md:justify-start gap-2">
+            <h3 className="text-md md:text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center justify-center md:justify-start gap-2">
               <Phone className="w-5 h-5 text-green-600 dark:text-green-400" />
               Get In Touch
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-4 text-sm md:text-md">
               {contactDetails.map((item) => (
                 <li key={item.label}>
                   <a
@@ -172,7 +172,7 @@ const Footer = () => {
 
           {/* Social Column */}
           <div className="text-center md:text-right">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center justify-center md:justify-end gap-2">
+            <h3 className="text-md md:text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center justify-center md:justify-end gap-2">
               <Zap className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               Connect
             </h3>
@@ -184,7 +184,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={`w-12 h-12 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.hoverColor} transition-all duration-500 hover:scale-110 hover:bg-gray-300/50 dark:hover:bg-gray-700/50`}
+                  className={` w-12 h-12 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.hoverColor} transition-all duration-500 hover:scale-110 hover:bg-gray-300/50 dark:hover:bg-gray-700/50`}
                 >
                   <social.icon className="w-5 h-5" />
                 </a>

@@ -15,14 +15,22 @@ function BookCard({ book, index = 0 }) {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!isAuthenticated) return toast.error("Please login to add to cart");
+    if (!isAuthenticated) {
+      toast.error("Please login to add to cart");
+      navigate("/login");
+      return;
+    }
     addToCart(book);
   };
 
   const handleToggleFavorite = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!isAuthenticated) return toast.error("Please login to favorite");
+    if (!isAuthenticated) {
+      toast.error("Please login to favorite");
+      navigate("/login");
+    }
+
     toggleFavorite(book);
   };
 
@@ -65,16 +73,16 @@ function BookCard({ book, index = 0 }) {
   };
 
   return (
-    <div className="relative hover:scale-[103%] w-full max-w-md mx-auto bg-gray-500/10 rounded-[48px] dark:shadow-blue-500/50 hover:shadow-md transition-all duration-500 overflow-hidden group">
+    <div className="relative hover:scale-[103%] w-full max-w-md mx-auto bg-gray-500/10 rounded-[48px] dark:shadow-blue-800/50 hover:shadow-md transition-all duration-500 overflow-hidden group">
       {/* Book Cover */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden opacity-80 hover:opacity-100 transition-all duration-500 "
         onClick={handleViewDetails}
       >
         <img
-          src={book.image}
+          src={book.images[0]}
           alt={book.title}
-          className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-[102%]"
+          className="w-full h-60 object-cover  group-hover:scale-[102%]"
         />
 
         {/* Category */}

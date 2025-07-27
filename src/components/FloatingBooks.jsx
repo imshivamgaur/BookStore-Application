@@ -34,7 +34,7 @@ const FloatingBooks = () => {
   ];
 
   return (
-    <div className="absolute hidden md:block inset-0 pointer-events-none -z-5 overflow-hidden">
+    <div className="absolute hidden lg:block inset-0 pointer-events-none -z-8 overflow-hidden">
       {books.map((book, index) => (
         <motion.div
           key={index}

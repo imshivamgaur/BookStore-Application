@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock, User, BookOpen } from "lucide-react";
@@ -48,6 +48,10 @@ function Signup() {
       [e.target.name]: e.target.value,
     }));
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="min-h-[70vh] md:min-h-screen bg-transparent flex items-center justify-center p-4 relative">

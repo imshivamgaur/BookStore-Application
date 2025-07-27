@@ -63,7 +63,7 @@ function Header() {
             </motion.div>
 
             {/* Desktop Navigation - Takes 1/3 space and centers */}
-            <nav className="hidden md:flex flex-1 justify-center">
+            <nav className="hidden lg:flex flex-1 justify-center">
               <div className="flex space-x-8">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
@@ -72,8 +72,8 @@ function Header() {
                 >
                   <Link
                     to="/"
-                    className={`font-medium transition-colors text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ${
-                      isActive("/") ? "!text-blue-600 dark:!text-blue-400" : ""
+                    className={`font-medium transition-colors text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ${
+                      isActive("/") ? "!text-blue-500" : ""
                     }`}
                   >
                     Home
@@ -88,10 +88,8 @@ function Header() {
                     >
                       <Link
                         to="/favorites"
-                        className={`font-medium transition-colors ${
-                          isActive("/favorites")
-                            ? "!text-blue-600 dark:!text-blue-400"
-                            : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                        className={`font-medium transition-colors  dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ${
+                          isActive("/favorites") ? "!text-blue-500" : ""
                         }`}
                       >
                         Favorites
@@ -104,10 +102,8 @@ function Header() {
                     >
                       <Link
                         to="/cart"
-                        className={`font-medium transition-colors ${
-                          isActive("/cart")
-                            ? "!text-blue-600 dark:!text-blue-400"
-                            : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                        className={`font-medium transition-colors  dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ${
+                          isActive("/cart") ? "!text-blue-500" : ""
                         }`}
                       >
                         Cart
@@ -124,14 +120,14 @@ function Header() {
 
               {/* Mobile Menu Button */}
               <button
-                className="md:hidden p-2 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="lg:hidden p-2 text-black dark:text-gray-300 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <Menu className="w-5 h-5" />
               </button>
 
               {/* Desktop Actions */}
-              <div className="hidden md:flex items-center">
+              <div className="hidden lg:flex items-center">
                 {isAuthenticated ? (
                   <div className="flex items-center gap-2 bg-gray-500/10 rounded-full px-2 py-1">
                     {/* Cart */}
@@ -142,7 +138,7 @@ function Header() {
                     >
                       <Link
                         to="/cart"
-                        className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         <ShoppingCart className="w-5 h-5" />
                         {getTotalItems() > 0 && (
@@ -166,7 +162,7 @@ function Header() {
                       <div className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
                         <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                       </div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      <span className="text-sm font-medium text-black dark:text-gray-300">
                         {user.name.split(" ")[0]}
                       </span>
                       <motion.button
@@ -222,7 +218,7 @@ function Header() {
               animate={{ opacity: 0.5 }}
               transition={{ duration: 0.5 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-40 md:hidden"
+              className="fixed inset-0 bg-black z-40 lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
 
@@ -232,14 +228,14 @@ function Header() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 left-0 right-0 bg-gray-500/5 backdrop-blur-md shadow-lg z-50 md:hidden rounded-b-xl"
+              className="fixed top-0 left-0 right-0 bg-gray-500/5 backdrop-blur-md shadow-lg z-50 lg:hidden rounded-b-xl"
             >
               <div className="p-8">
                 {/* Menu Header with Close Button */}
                 <div className="flex justify-end">
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
+                    className="p-2 text-black dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -250,10 +246,10 @@ function Header() {
                   <Link
                     to="/"
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex flex-col items-center p-2 rounded-lg ${
+                    className={`flex flex-col items-center p-2 rounded-lg text-black dark:text-gray-400 ${
                       isActive("/")
-                        ? "text-blue-600 dark:text-blue-400"
-                        : "text-gray-700 dark:text-gray-300"
+                        ? "!text-blue-700"
+                        : ""
                     }`}
                   >
                     <Home className="w-6 h-6" />
@@ -265,10 +261,10 @@ function Header() {
                       <Link
                         to="/favorites"
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`flex flex-col items-center p-2 rounded-lg ${
+                        className={`flex flex-col items-center p-2 rounded-lg text-black dark:text-gray-400 ${
                           isActive("/favorites")
-                            ? "text-blue-600 dark:text-blue-400"
-                            : "text-gray-700 dark:text-gray-300"
+                            ? "!text-blue-700"
+                            : ""
                         }`}
                       >
                         <Heart className="w-6 h-6" />
@@ -278,10 +274,10 @@ function Header() {
                       <Link
                         to="/cart"
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`flex flex-col items-center p-2 rounded-lg relative ${
+                        className={`flex relative flex-col items-center p-2 rounded-lg text-black dark:text-gray-400 ${
                           isActive("/cart")
-                            ? "text-blue-600 dark:text-blue-400"
-                            : "text-gray-700 dark:text-gray-300"
+                            ? "!text-blue-700"
+                            : ""
                         }`}
                       >
                         <ShoppingCart className="w-6 h-6" />

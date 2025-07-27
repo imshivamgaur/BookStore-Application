@@ -30,7 +30,7 @@ function BookGrid({ books, isLoading }) {
     setVisibleCount((prev) => Math.min(prev + 4, books.length));
 
     // Reset expanding state after animation
-    setTimeout(() => setIsExpanding(false), 300);
+    setTimeout(() => setIsExpanding(false), 500);
   };
 
   const handleShowLess = () => {
@@ -84,10 +84,10 @@ function BookGrid({ books, isLoading }) {
           {/* Progress Bar */}
           <div className="w-full max-w-xs bg-gray-200 dark:bg-gray-700 rounded-full h-2">
             <motion.div
-              className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
+              className="bg-gradient-to-r from-blue-800 to-purple-600 h-2 rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${(visibleCount / books.length) * 100}%` }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 1 }}
             />
           </div>
 
@@ -116,8 +116,7 @@ function BookGrid({ books, isLoading }) {
                   </>
                 ) : (
                   <>
-                    <BookOpen className="w-4 h-4" />
-                    <span>Show More Books</span>
+                    <span>Show More</span>
                     <motion.div
                       animate={{ y: [0, 2, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
