@@ -14,39 +14,40 @@ import {
   MapPin,
   Clock,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   // Data for links to make the JSX cleaner
   const navLinks = [
-    { icon: Home, label: "Home", href: "/" },
-    { icon: BookOpen, label: "Cart", href: "/cart" },
-    { icon: ShoppingBag, label: "Favorites", href: "/favorites" },
-    { icon: MessageSquare, label: "Contact", href: "/contact" },
+    { icon: Home, label: "Home", link: "/" },
+    { icon: BookOpen, label: "Cart", link: "/cart" },
+    { icon: ShoppingBag, label: "Favorites", link: "/favorites" },
+    { icon: MessageSquare, label: "Contact", link: "/contact" },
   ];
 
   const contactDetails = [
     {
       icon: Mail,
       label: "shivamgaur24august@gmail.com",
-      href: "mailto:shivamgaur24august@gmail.com",
+      link: "mailto:shivamgaur24august@gmail.com",
       color: "text-blue-600 dark:text-blue-400",
     },
     {
       icon: Phone,
       label: "+91-9667454815",
-      href: "tel:+9667454815",
+      link: "tel:+9667454815",
       color: "text-green-600 dark:text-green-400",
     },
     {
       icon: MapPin,
       label: "Noida, India",
-      href: "#",
+      link: "#",
       color: "text-red-600 dark:text-red-400",
     },
     {
       icon: Clock,
       label: "24/7 Support",
-      href: "#",
+      link: "#",
       color: "text-yellow-600 dark:text-yellow-400",
     },
   ];
@@ -54,19 +55,19 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/imshivamgaur24august",
+      link: "https://github.com/imshivamgaur",
       label: "GitHub",
       hoverColor: "hover:text-gray-700 dark:hover:text-gray-300",
     },
     {
       icon: Twitter,
-      href: "https://twitter.com",
+      link: "https://twitter.com/24kShiv",
       label: "Twitter",
       hoverColor: "hover:text-blue-600 dark:hover:text-blue-400",
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/iamshivamgaur24august",
+      link: "https://linkedin.com/in/iamshivamgaur",
       label: "LinkedIn",
       hoverColor: "hover:text-blue-700 dark:hover:text-blue-500",
     },
@@ -131,15 +132,15 @@ const Footer = () => {
             <ul className="space-y-4 text-sm md:text-md">
               {navLinks.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.link}
                     className="flex items-center justify-center md:justify-start gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-500 group"
                   >
                     <item.icon className="w-4 h-4 text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                     <span className="group-hover:translate-x-1 transition-transform duration-500">
                       {item.label}
                     </span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -155,7 +156,7 @@ const Footer = () => {
               {contactDetails.map((item) => (
                 <li key={item.label}>
                   <a
-                    href={item.href}
+                    link={item.link}
                     className="flex items-center justify-center md:justify-start gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-500 group"
                   >
                     <item.icon
@@ -178,16 +179,16 @@ const Footer = () => {
             </h3>
             <div className="flex gap-3 justify-center md:justify-end mb-6">
               {socialLinks.map((social) => (
-                <a
+                <Link
                   key={social.label}
-                  href={social.href}
+                  to={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
                   className={` w-12 h-12 bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.hoverColor} transition-all duration-500 hover:scale-110 hover:bg-gray-300/50 dark:hover:bg-gray-700/50`}
                 >
                   <social.icon className="w-5 h-5" />
-                </a>
+                </Link>
               ))}
             </div>
             <div className="text-gray-600 dark:text-gray-400 text-sm">
@@ -220,24 +221,24 @@ const Footer = () => {
             © {new Date().getFullYear()} ProDevelopers. Crafted with ❤️ in India
           </div>
           <div className="flex items-center justify-center gap-x-6 gap-y-2 flex-wrap text-sm text-gray-600 dark:text-gray-400">
-            <a
-              href="/privacy"
+            <Link
+              to="/privacy"
               className="hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               Privacy Policy
-            </a>
-            <a
-              href="/terms"
+            </Link>
+            <Link
+              to="/terms"
               className="hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               Terms of Service
-            </a>
-            <a
-              href="/cookies"
+            </Link>
+            <Link
+              to="/cookies"
               className="hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </div>
