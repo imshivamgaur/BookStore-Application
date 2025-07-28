@@ -68,7 +68,6 @@ const BookDetails = () => {
       return;
     }
     addToCart({ ...book, quantity });
-    toast.success("Added to cart!");
   };
 
   const handleToggleFavorite = () => {
@@ -388,13 +387,14 @@ const BookDetails = () => {
                 <ShoppingCart className="w-5 h-5" />
                 Add to Cart
               </motion.button>
-              <motion.button
+              <Link
+                to={"/cart"}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex-1 px-6 py-4 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors font-semibold text-lg shadow-md"
               >
-                Buy Now
-              </motion.button>
+                <Link to={"/cart"}>Go to Cart</Link>
+              </Link>
             </div>
 
             {/* Description */}

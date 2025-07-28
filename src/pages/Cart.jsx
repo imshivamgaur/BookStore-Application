@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Plus, Minus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
@@ -17,6 +17,10 @@ function Cart() {
 
   //* Modal
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (isLoading) {
     return (
@@ -310,7 +314,7 @@ function Cart() {
       <CheckoutModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        clearCart={clearCart}
+        clearCart={() => clearCart()}
       />
     </motion.div>
   );
