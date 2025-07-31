@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Phone, MapPin, Send, ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -13,16 +14,31 @@ function Contact() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Initialize EmailJS with your credentials
+  useEffect(() => {
+    emailjs.init("7GSbsLXsskGaK2E1B"); // This is your EMAIL_PK (Public Key)
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Send the email using EmailJS
+      await emailjs.send(
+        "service_x5w8icq", // This is your EMAIL_SID (Service ID)
+        "template_wmgeyzi", // This is your EMAIL_TID (Template ID)
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        }
+      );
+
       toast.success("Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("Failed to send message:", error);
       toast.error("Failed to send message");
     } finally {
       setIsLoading(false);
@@ -82,7 +98,7 @@ function Contact() {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div cla>
+                  <div>
                     <label
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1"
