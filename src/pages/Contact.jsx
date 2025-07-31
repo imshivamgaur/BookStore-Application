@@ -43,6 +43,8 @@ function Contact() {
     } finally {
       setIsLoading(false);
     }
+
+    setFormData({ name: "", email: "", message: "" });
   };
 
   const handleChange = (e) => {
